@@ -6,14 +6,15 @@ import { Component } from 'react';
 
 export class App extends Component {
 
-  render() {
-    
+  render() 
+  {
+
     return (
       <div className={css.box}>
         <form className={css.form}>
           <label>Name</label>
           <input
-            placeholder="Vasya Pupkin"
+            placeholder="Name"
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -22,7 +23,7 @@ export class App extends Component {
           />
           <label>Number</label>
           <input
-            placeholder="+ country code digits"
+            placeholder="Number"
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -36,9 +37,9 @@ export class App extends Component {
         <div className={css.contact_block}>
           <form className={css.form_find}>
             <label>Find contacts by name</label>
-            <input />
+            <input placeholder='Filter' />
           </form>
-          <ol className={css.list}>
+          <ul className={css.list}>
             <li className={css.list_element}>
               Vasya Pupkin +3809955555{' '}
               <button className={css.btn_delete} type="submit">
@@ -57,7 +58,7 @@ export class App extends Component {
                 Delete
               </button>
             </li>
-          </ol>
+          </ul>
         </div>
       </div>
     );
