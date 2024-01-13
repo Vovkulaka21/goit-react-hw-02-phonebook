@@ -2,18 +2,23 @@ import css from './App.module.css';
 
 import { Component } from 'react';
 
-// import { nanoid } from 'nanoid';
+import { nanoid } from 'nanoid';
 
 export class App extends Component {
 
-  render() 
-  {
+  idName = nanoid();
+  idNumber = nanoid();
+
+  render() {
+
+    const {idName, idNumber} = this;
 
     return (
       <div className={css.box}>
         <form className={css.form}>
-          <label>Name</label>
+          <label htmlFor={idName}>Name</label>
           <input
+            id={idName}
             placeholder="Name"
             type="text"
             name="name"
@@ -21,8 +26,9 @@ export class App extends Component {
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
           />
-          <label>Number</label>
+          <label htmlFor={idNumber}>Number</label>
           <input
+            id={idNumber}
             placeholder="Number"
             type="tel"
             name="number"
@@ -37,9 +43,9 @@ export class App extends Component {
         <div className={css.contact_block}>
           <form className={css.form_find}>
             <label>Find contacts by name</label>
-            <input placeholder='Filter' />
+            <input placeholder="Filter" />
           </form>
-          <ul className={css.list}>
+          <ol className={css.list}>
             <li className={css.list_element}>
               Vasya Pupkin +3809955555{' '}
               <button className={css.btn_delete} type="submit">
@@ -58,7 +64,7 @@ export class App extends Component {
                 Delete
               </button>
             </li>
-          </ul>
+          </ol>
         </div>
       </div>
     );

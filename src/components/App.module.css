@@ -34,10 +34,7 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
-}
-.list_element {
-    display: flex;
-    align-items: center;
+    list-style-type: decimal;
 }
 .btn_delete {
     margin-left: 5px;
