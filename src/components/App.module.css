@@ -1,3 +1,43 @@
 .box {
+    margin-top: 75px;
     display: flex;
+    justify-content: space-around;  
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.btn {
+    max-width: 100px;
+    cursor: pointer;
+}
+.btn:hover {
+    background-color: aquamarine;
+}
+.contact_block {
+    display: flex;
+    flex-direction: column;
+}
+.form_find {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.list {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.list_element {
+    display: flex;
+    align-items: center;
+}
+.btn_delete {
+    margin-left: 5px;
+    cursor: pointer;
+}
+.btn_delete:hover {
+    background-color: red;
 }
