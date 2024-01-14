@@ -4,21 +4,6 @@
     display: flex;
     justify-content: space-evenly;
 }
-.form {
-    max-width: 350px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-.btn {
-    max-width: 100px;
-    cursor: pointer;
-    border-radius: 5px;
-    border: 0.5px solid grey;
-}
-.btn:hover {
-    background-color: aquamarine;
-}
 .contact_block {
     max-width: 350px;
     display: flex;
