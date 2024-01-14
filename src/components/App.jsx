@@ -7,18 +7,17 @@ import { Component } from 'react';
 import AddContactForm from './AddContactForm/AddContactForm';
 
 class App extends Component {
-
   state = {
     contacts: [],
     filter: '',
   };
 
   render() {
-
     return (
-
       <div className={css.box}>
-        <AddContactForm/>
+        <h1>Phonebook</h1>
+        <AddContactForm />
+        <h2>Contacts</h2>
         <div className={css.contact_block}>
           <form className={css.form_find}>
             <label>Find contacts by name</label>
@@ -50,4 +49,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default App;
