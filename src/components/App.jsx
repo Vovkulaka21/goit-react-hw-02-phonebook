@@ -1,10 +1,10 @@
 import css from './App.module.css';
 
 import { Component } from 'react';
-
-// import { nanoid } from 'nanoid';
+import { nanoid } from 'nanoid';
 
 import AddContactForm from './AddContactForm/AddContactForm';
+import Phonebook from './Phonebook/Phonebook';
 
 class App extends Component {
   state = {
@@ -12,38 +12,29 @@ class App extends Component {
     filter: '',
   };
 
+  addContact = info => {
+    this.setState(({ contacts }) => {
+      const newContact = {
+        id: nanoid(),
+        ...info,
+      };
+
+      return {
+        contacts: [...contacts, newContact],
+      };
+    });
+  };
+
   render() {
+    const { contacts } = this.state;
+    const { addContact } = this;
+
     return (
       <div className={css.box}>
         <h1>Phonebook</h1>
-        <AddContactForm />
+        <AddContactForm onSubmit={addContact} />
         <h2>Contacts</h2>
-        <div className={css.contact_block}>
-          <form className={css.form_find}>
-            <label>Find contacts by name</label>
-            <input placeholder="Filter" />
-          </form>
-          <ol className={css.list}>
-            <li className={css.list_element}>
-              Vasya Pupkin +3809955555{' '}
-              <button className={css.btn_delete} type="submit">
-                Delete
-              </button>
-            </li>
-            <li className={css.list_element}>
-              Vasya Pupkin +3809955555{' '}
-              <button className={css.btn_delete} type="submit">
-                Delete
-              </button>
-            </li>
-            <li className={css.list_element}>
-              Vasya Pupkin +3809955555{' '}
-              <button className={css.btn_delete} type="submit">
-                Delete
-              </button>
-            </li>
-          </ol>
-        </div>
+        <Phonebook items={contacts} />
       </div>
     );
   }
