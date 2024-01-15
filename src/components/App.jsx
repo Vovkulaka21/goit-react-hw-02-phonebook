@@ -5,10 +5,14 @@ import { nanoid } from 'nanoid';
 
 import AddContactForm from './AddContactForm/AddContactForm';
 import Phonebook from './Phonebook/Phonebook';
+import ContactFilter from './ContactFilter/ContactFilter';
 
 class App extends Component {
   state = {
-    contacts: [],
+    contacts: [    {id: nanoid(), name: 'Rosie Simpson', number: '459-12-56'},
+    {id: nanoid(), name: 'Hermione Kline', number: '443-89-12'},
+    {id: nanoid(), name: 'Eden Clements', number: '645-17-79'},
+    {id: nanoid(), name: 'Annie Copeland', number: '227-91-26'},],
     filter: '',
   };
 
@@ -53,33 +57,32 @@ class App extends Component {
     });
   };
 
-  inputFilter = ({target}) => {
-    this.setState ({
-      filter: target.value
-    })
-  }
+  inputFilter = ({ target }) => {
+    this.setState({
+      filter: target.value,
+    });
+  };
 
   getFilteredContacts() {
-    const {filter, contacts} = this.state;
-    if(!filter) {
-      return contacts
+    const { filter, contacts } = this.state;
+    if (!filter) {
+      return contacts;
     }
 
-    const normalizedFilter = filter.toLowerCase().replaceAll(' ', '') 
+    const normalizedFilter = filter.toLowerCase().replaceAll(' ', '');
 
     const filteredContacts = contacts.filter(({ name }) => {
+      const normalizedName = name.toLowerCase().replaceAll(' ', '');
 
-      const normalizedName = name.toLowerCase().replaceAll(' ', '')
+      return normalizedName.includes(normalizedFilter);
+    });
 
-      return (normalizedName.includes(normalizedFilter))
-    })
-
-    return filteredContacts
+    return filteredContacts;
   }
 
   render() {
     const { addContact, deleteContact, inputFilter } = this;
-    const contacts = this.getFilteredContacts()
+    const contacts = this.getFilteredContacts();
 
     return (
       <div className={css.box}>
@@ -87,8 +90,7 @@ class App extends Component {
         <AddContactForm onSubmit={addContact} />
         <h2>Contacts</h2>
         <div className={css.contacts_box}>
-            <label>Find contacts by name</label>
-            <input onChange={inputFilter} placeholder="Filter" />
+          <ContactFilter inputFilter={inputFilter} />
           <Phonebook items={contacts} deleteContact={deleteContact} />
         </div>
       </div>
