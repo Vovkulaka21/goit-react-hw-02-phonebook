@@ -8,8 +8,10 @@ import Phonebook from './Phonebook/Phonebook';
 
 class App extends Component {
   state = {
+    
     contacts: [ {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'}],
     filter: '',
+
   };
 
   dublicateName({name}) {
@@ -45,6 +47,7 @@ class App extends Component {
   };
 
   render() {
+
     const { contacts } = this.state;
     const { addContact } = this;
 
