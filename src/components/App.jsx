@@ -8,13 +8,11 @@ import Phonebook from './Phonebook/Phonebook';
 
 class App extends Component {
   state = {
-    
-    contacts: [ {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'}],
+    contacts: [],
     filter: '',
-
   };
 
-  dublicateName({name}) {
+  dublicateName({ name }) {
     const normalizeName = name.toLowerCase().replaceAll(' ', '');
     const { contacts } = this.state;
 
@@ -23,17 +21,16 @@ class App extends Component {
       return normalizeCurrentName === normalizeName;
     });
 
-    return Boolean(dublicate)
-
+    return Boolean(dublicate);
   }
 
   addContact = info => {
-    const {name} = info;
+    const { name } = info;
 
     if (this.dublicateName(info)) {
       return alert(`${name} is already in contacts.`);
     }
-    
+
     this.setState(({ contacts }) => {
       const newContact = {
         id: nanoid(),
@@ -46,17 +43,26 @@ class App extends Component {
     });
   };
 
-  render() {
+  deleteContact = id => {
+    this.setState(({ contacts }) => {
+      const updatedContacts = contacts.filter(item => item.id !== id);
 
+      return {
+        contacts: updatedContacts,
+      };
+    });
+  };
+
+  render() {
     const { contacts } = this.state;
-    const { addContact } = this;
+    const { addContact, deleteContact } = this;
 
     return (
       <div className={css.box}>
         <h1>Phonebook</h1>
         <AddContactForm onSubmit={addContact} />
         <h2>Contacts</h2>
-        <Phonebook items={contacts} />
+        <Phonebook items={contacts} deleteContact={deleteContact} />
       </div>
     );
   }
