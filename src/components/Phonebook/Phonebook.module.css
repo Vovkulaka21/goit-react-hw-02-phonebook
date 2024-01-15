@@ -3,11 +3,6 @@
     display: flex;
     flex-direction: column;
 }
-.form_find {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
 .list {
     margin-top: 15px;
     display: flex;

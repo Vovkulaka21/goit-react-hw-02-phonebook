@@ -53,16 +53,44 @@ class App extends Component {
     });
   };
 
+  inputFilter = ({target}) => {
+    this.setState ({
+      filter: target.value
+    })
+  }
+
+  getFilteredContacts() {
+    const {filter, contacts} = this.state;
+    if(!filter) {
+      return contacts
+    }
+
+    const normalizedFilter = filter.toLowerCase().replaceAll(' ', '') 
+
+    const filteredContacts = contacts.filter(({ name }) => {
+
+      const normalizedName = name.toLowerCase().replaceAll(' ', '')
+
+      return (normalizedName.includes(normalizedFilter))
+    })
+
+    return filteredContacts
+  }
+
   render() {
-    const { contacts } = this.state;
-    const { addContact, deleteContact } = this;
+    const { addContact, deleteContact, inputFilter } = this;
+    const contacts = this.getFilteredContacts()
 
     return (
       <div className={css.box}>
         <h1>Phonebook</h1>
         <AddContactForm onSubmit={addContact} />
         <h2>Contacts</h2>
-        <Phonebook items={contacts} deleteContact={deleteContact} />
+        <div className={css.contacts_box}>
+            <label>Find contacts by name</label>
+            <input onChange={inputFilter} placeholder="Filter" />
+          <Phonebook items={contacts} deleteContact={deleteContact} />
+        </div>
       </div>
     );
   }
